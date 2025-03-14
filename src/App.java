@@ -26,7 +26,7 @@ import java.util.Random;
  */
 
 public class App {
-    static int[] tamanhosTesteGrande =  { 10_000_000, 20_000_000, 30_000_000, 40_000_000, 50_000_000};
+    static int[] tamanhosTesteGrande =  { 10_000_000, 20_000_000, 30_000_000, 40_000_000, 50_000_000, 30_000_000 };
     static int[] tamanhosTesteMedio =   {  12_500,  25_000,  50_000,   100_000,   200_000 };
     static int[] tamanhosTestePequeno = {       3,       6,      12,        24,        48 };
     static Random aleatorio = new Random(42);
@@ -42,7 +42,7 @@ public class App {
 
         for (int i = 0; i < vetor.length; i += 2) {
             resposta += vetor[i]%2;
-            cntOp+=2;
+            cntOp++;
         }
         System.out.println("Qtd. de operações: "+cntOp);
         return resposta;
@@ -108,7 +108,10 @@ public class App {
     }
     public static void main(String[] args) {
         long tempoInicial = System.currentTimeMillis();
-        System.out.println(App.codigo1(tamanhosTesteGrande));
+
+        int[] vetor = gerarVetor(125_000);
+        System.out.println(App.codigo1(vetor));
+
         System.out.println("Tempo de execução: "+(System.currentTimeMillis() - tempoInicial)+"ms");
 
     }
