@@ -26,7 +26,7 @@ import java.util.Random;
  */
 
 public class App {
-    static int[] tamanhosTesteGrande =  { 10_000_000, 3_000_000, 4_000_000, 5_000_000, 6_000_000 };
+    static int[] tamanhosTesteGrande =  { 100_000_000, 300_000_000, 400_000_000, 500_000_000, 600_000_000, 30_000_000 };
     static int[] tamanhosTesteMedio =   {  12_500,  25_000,  50_000,   100_000,   200_000 };
     static int[] tamanhosTestePequeno = {       3,       6,      12,        24,        48 };
     static Random aleatorio = new Random(42);
@@ -104,7 +104,7 @@ public class App {
     }
     public static void main(String[] args) {
         long tempoInicial = System.currentTimeMillis();
-        System.out.println(App.codigo1(tamanhosTesteGrande));
+        System.out.println(App.codigo2(tamanhosTesteGrande));
         System.out.println("Tempo de execução: "+(System.currentTimeMillis() - tempoInicial)+"ms");
 
     }
