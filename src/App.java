@@ -55,12 +55,17 @@ public class App {
      */
     static int codigo2(int[] vetor) {
         int contador = 0;
+        int cntOp = 0;
+
         for (int k = (vetor.length - 1); k > 0; k /= 2) {
+            cntOp++;
             for (int i = 0; i <= k; i++) {
                 contador++;
+                cntOp++;
             }
 
         }
+        System.out.println("Qtd. de operações: "+cntOp);
         return contador;
     }
 
@@ -109,8 +114,8 @@ public class App {
     public static void main(String[] args) {
         long tempoInicial = System.currentTimeMillis();
 
-        int[] vetor = gerarVetor(125_000);
-        System.out.println(App.codigo1(vetor));
+        int[] vetor = gerarVetor(200_000);
+        System.out.println(App.codigo2(vetor));
 
         System.out.println("Tempo de execução: "+(System.currentTimeMillis() - tempoInicial)+"ms");
 
