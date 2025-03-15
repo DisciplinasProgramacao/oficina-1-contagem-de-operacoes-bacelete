@@ -1,10 +1,10 @@
 import java.util.Random;
 
-/** 
+/**
  * MIT License
  *
  * Copyright(c) 2024-255 João Caram <caram@pucminas.br>
- *                       Eveline Alonso Veloso
+ * Eveline Alonso Veloso
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -13,7 +13,8 @@ import java.util.Random;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
+ * The above copyright notice and this permission notice shall be included in
+ * all
  * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -26,13 +27,14 @@ import java.util.Random;
  */
 
 public class App {
-    static int[] tamanhosTesteGrande =  { 100_000_000, 125_000, 150_000, 175_000, 200_000 };
-    static int[] tamanhosTesteMedio =   {  12_500,  25_000,  50_000,   100_000,   200_000 };
-    static int[] tamanhosTestePequeno = {       3,       6,      12,        24,        48 };
+    static int[] tamanhosTesteGrande = { 100_000_000, 125_000, 150_000, 175_000, 200_000 };
+    static int[] tamanhosTesteMedio = { 12_500, 25_000, 50_000, 100_000, 200_000 };
+    static int[] tamanhosTestePequeno = { 3, 6, 12, 24, 48 };
     static Random aleatorio = new Random(42);
 
     /**
      * Código de teste 1. Este método...
+     * 
      * @param vetor Vetor com dados para teste.
      * @return Uma resposta que significa....
      */
@@ -41,15 +43,16 @@ public class App {
         int cntOp = 0;
 
         for (int i = 0; i < vetor.length; i += 2) {
-            resposta += vetor[i]%2;
+            resposta += vetor[i] % 2;
             cntOp++;
         }
-        System.out.println("Qtd. de operações: "+cntOp);
+        System.out.println("Qtd. de operações: " + cntOp);
         return resposta;
     }
 
     /**
      * Código de teste 2. Este método...
+     * 
      * @param vetor Vetor com dados para teste.
      * @return Uma resposta que significa....
      */
@@ -65,23 +68,24 @@ public class App {
             }
 
         }
-        System.out.println("Qtd. de operações: "+cntOp);
+        System.out.println("Qtd. de operações: " + cntOp);
         return contador;
     }
 
     /**
      * Código de teste 3. Este método...
+     * 
      * @param vetor Vetor com dados para teste.
      */
     static void codigo3(int[] vetor) {
-        long cntOp = 0; 
+        long cntOp = 0;
 
         for (int i = 0; i < vetor.length - 1; i++) {
             int menor = i;
             cntOp++;
             for (int j = i + 1; j < vetor.length; j++) {
                 cntOp++;
-                if (vetor[j] < vetor[menor]){ 
+                if (vetor[j] < vetor[menor]) {
                     menor = j;
                     cntOp++;
                 }
@@ -89,44 +93,52 @@ public class App {
             int temp = vetor[i];
             vetor[i] = vetor[menor];
             vetor[menor] = temp;
-            cntOp+=3;
+            cntOp += 3;
         }
 
-        System.out.println("Qtd. de operações: "+cntOp);
+        System.out.println("Qtd. de operações: " + cntOp);
     }
 
     /**
      * Código de teste 4 (recursivo). Este método...
+     * 
      * @param n Ponto inicial do algoritmo
      * @return Um inteiro que significa...
      */
+    static long cntOp = 0;
     static int codigo4(int n) {
-        if (n <= 2)
+        if (n <= 2) {
+            cntOp++;
             return 1;
-        else
+        } else {
+            cntOp++;
             return codigo4(n - 1) + codigo4(n - 2);
+        }
     }
 
     /**
-     * Gerador de vetores aleatórios de tamanho pré-definido. 
+     * Gerador de vetores aleatórios de tamanho pré-definido.
+     * 
      * @param tamanho Tamanho do vetor a ser criado.
-     * @return Vetor com dados aleatórios, com valores entre 1 e (tamanho/2), desordenado.
+     * @return Vetor com dados aleatórios, com valores entre 1 e (tamanho/2),
+     *         desordenado.
      */
-    static int[] gerarVetor(int tamanho){
+    static int[] gerarVetor(int tamanho) {
         int[] vetor = new int[tamanho];
         for (int i = 0; i < tamanho; i++) {
-            vetor[i] = aleatorio.nextInt(1, tamanho/2);
+            vetor[i] = aleatorio.nextInt(1, tamanho / 2);
         }
         return vetor;
-        
+
     }
+
     public static void main(String[] args) {
         long tempoInicial = System.currentTimeMillis();
 
-        int[] vetor = gerarVetor(200_000);
-        App.codigo3(vetor);
-
-        System.out.println("Tempo de execução: "+(System.currentTimeMillis() - tempoInicial)+"ms");
+        int resultado = codigo4(48);
+        System.out.println("Resultado: " + resultado);
+        System.out.println("Quantidade de operações: " + cntOp);
+        System.out.println("Tempo gasto: "+(System.currentTimeMillis() - tempoInicial)+"ms");
 
     }
 }
