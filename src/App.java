@@ -26,7 +26,7 @@ import java.util.Random;
  */
 
 public class App {
-    static int[] tamanhosTesteGrande =  { 10_000_000, 20_000_000, 30_000_000, 40_000_000, 50_000_000, 30_000_000 };
+    static int[] tamanhosTesteGrande =  { 100_000_000, 125_000, 150_000, 175_000, 200_000 };
     static int[] tamanhosTesteMedio =   {  12_500,  25_000,  50_000,   100_000,   200_000 };
     static int[] tamanhosTestePequeno = {       3,       6,      12,        24,        48 };
     static Random aleatorio = new Random(42);
@@ -74,16 +74,25 @@ public class App {
      * @param vetor Vetor com dados para teste.
      */
     static void codigo3(int[] vetor) {
+        long cntOp = 0; 
+
         for (int i = 0; i < vetor.length - 1; i++) {
             int menor = i;
+            cntOp++;
             for (int j = i + 1; j < vetor.length; j++) {
-                if (vetor[j] < vetor[menor])
+                cntOp++;
+                if (vetor[j] < vetor[menor]){ 
                     menor = j;
+                    cntOp++;
+                }
             }
             int temp = vetor[i];
             vetor[i] = vetor[menor];
             vetor[menor] = temp;
+            cntOp+=3;
         }
+
+        System.out.println("Qtd. de operações: "+cntOp);
     }
 
     /**
@@ -115,7 +124,7 @@ public class App {
         long tempoInicial = System.currentTimeMillis();
 
         int[] vetor = gerarVetor(200_000);
-        System.out.println(App.codigo2(vetor));
+        App.codigo3(vetor);
 
         System.out.println("Tempo de execução: "+(System.currentTimeMillis() - tempoInicial)+"ms");
 
